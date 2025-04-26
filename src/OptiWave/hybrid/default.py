@@ -81,8 +81,7 @@ def ksvd(IMAGE : str, patch_size = 8, stride = 8, sparsity = 5, max_iter=20):
             if len(index_j) <= 1 :
                 continue
             E_j = Y[:, index_j] - D @ X[:, index_j] + np.outer(D[:, j], X[j, index_j])
-            #U, S, Vt = np.linalg.svd(E_j, full_matrices=False)
-            U, S, Vt = np.linalg.svd(E_j, k=1, which='LM')
+            U, S, Vt = np.linalg.svd(E_j, full_matrices=False)
             D[:,j] = U[: ,0]
             X[j, index_j] = S[0]*Vt[0 ,:]
     
